@@ -18,12 +18,12 @@ export default function PartnersProductsAddPage() {
     const [categoryId, setCategoryId] = useState();
     const [subCategoryId, setSubCategoryId] = useState();
     const [productAddForm, setProductAddForm] = useState({
-        showImgFile: "",
         productName: "",
         detail:"",
         price: 0,
         count: 0,
     });
+    const [showImgFile, setShowImgFile] = useState();
 
     const onChange = (event) => {
         setProductAddForm({
@@ -32,17 +32,26 @@ export default function PartnersProductsAddPage() {
         });
     }
 
+    const onChangeFile = (event) => {
+        setShowImgFile(event.target.files[0]);
+    }
+
     const confirm = () =>{
-        var params = {
-            showImgFile: productAddForm.showImgFile,
+        let product = {
             name: productAddForm.productName,
             detail: productAddForm.detail,
             price: productAddForm.price,
             count: productAddForm.count,
             categoryId: categoryId,
             subCategoryId: subCategoryId
-        }
-        ProductService.saveProduct(params);
+        };
+        
+        const formData = new FormData();
+        let data = new Blob([JSON.stringify(product)], {type: "application/json"});
+        formData.append("data", data);
+        formData.append("file", showImgFile);
+
+        ProductService.saveProduct(formData);
     }
 
     const cancel = () => {
@@ -74,7 +83,7 @@ export default function PartnersProductsAddPage() {
                 </Row>
                 <Form.Group className="mb-3" controlId="showImgFile">
                     <Form.Label>대표 이미지</Form.Label>
-                    <Form.Control type="file"/>
+                    <Form.Control type="file" name="showImgFile" onChange={onChangeFile}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="detail">
                     <Form.Label>상품 설명</Form.Label>

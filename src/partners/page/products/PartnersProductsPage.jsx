@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import CategorySelect from "./CategorySelect";
 import { useEffect } from "react";
 import ProductService from "../../js/product";
+import { webUrl } from "../../js/axios";
 
 const StyledTableHeader = styled.div`
     margin-bottom: 25px;
@@ -16,6 +17,10 @@ const StyledListWrapper = styled.div`
 
 const StyledH4 = styled.h4`
     display: inline;
+`;
+
+const StyledTd = styled.td`
+    vertical-align: middle;
 `;
 
 function PartnersProductsPage(){
@@ -71,7 +76,7 @@ function PartnersProductsPage(){
             </Form>
             <Table bordered hover size="sm">
                 <colgroup>
-                    <col width={200}></col>
+                    <col width={250}></col>
                     <col width={400}></col>
                     <col width={150}></col>
                     <col width={250}></col>
@@ -89,17 +94,17 @@ function PartnersProductsPage(){
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map((product, index) => {
+                    {products.map((product) => {
                         return (
                             <tr key={product.id}>
-                                <td className="text-center">
-                                    <img src="/images/pot.jpeg" width={100} alt="" />
-                                </td>
-                                <td>{product.name}</td>
-                                <td>{product.price}원</td>
-                                <td>주방 &gt; 냄비</td>
-                                <td>{product.count} 개</td>
-                                <td>2건</td>
+                                <StyledTd className="text-center">
+                                    <img src={webUrl + '/thumbnail/' + product.thumbnail} width={100} alt="" />
+                                </StyledTd>
+                                <StyledTd>{product.name}</StyledTd>
+                                <StyledTd>{product.price}원</StyledTd>
+                                <StyledTd>주방 &gt; 냄비</StyledTd>
+                                <StyledTd>{product.count} 개</StyledTd>
+                                <StyledTd>2건</StyledTd>
                             </tr>
                         );
                     })}

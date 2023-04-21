@@ -16,8 +16,8 @@ const ProductService = {
     getProduct: async (productId) => {
         return ApiService.get("/products/"+productId);
     },
-    saveProduct: async(params) => {
-        ApiService.post("/products", params, partnerHeaders())
+    saveProduct: async(formData) => {
+        ApiService.post("/products", formData, partnerHeaders("multipart/form-data"))
         .then(result => {
             alert('상품등록이 완료 되었습니다.');
             window.location.href = "/partners/products";
