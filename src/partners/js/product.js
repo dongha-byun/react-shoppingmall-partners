@@ -3,15 +3,14 @@ import { partnerHeaders } from "./headers";
 
 const ProductService = {
     
-    getProducts: async (categoryId, subCategoryId, orderType, limit, offset) => {
-        let url = "/products?" + 
-                    "categoryId="+categoryId+
+    getProducts: async (categoryId, subCategoryId, limit, offset) => {
+        let url = "/partners/products" + 
+                    "?categoryId="+categoryId+
                     "&subCategoryId="+subCategoryId+
-                    "&orderType="+orderType+
                     "&limit="+limit+
                     "&offset="+offset;
 
-        return ApiService.get(url);
+        return ApiService.get(url, partnerHeaders());
     },
     getProduct: async (productId) => {
         return ApiService.get("/products/"+productId);

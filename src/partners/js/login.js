@@ -1,7 +1,7 @@
 import { api } from "./axios";
 
 export function partnersLoginApi(loginValue){
-    api.post("/providers/login", loginValue)
+    api.post("/partners/login", loginValue)
     .then((response) => {
         if(response.data.accessToken){
             localStorage.setItem("partner-token", response.data.accessToken);

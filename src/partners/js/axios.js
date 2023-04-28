@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const webUrl = "http://localhost:10000";
 export const frontUrl = "http://localhost:3001";
+export const imgUrl = webUrl + "/thumbnail/";
 
 export const api = axios.create({
     baseURL: webUrl
