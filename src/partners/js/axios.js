@@ -16,7 +16,11 @@ const ApiService = {
     post : async(url, body, header) => {
         let response = await api.post(url, body, header);
         return response.data;
-    } 
+    },
+    put : async(url, body, header) => {
+        let response = await api.put(url, body, header);
+        return response.data;
+    }
 };
 
 export default ApiService;

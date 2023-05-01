@@ -18,7 +18,7 @@ import PartnersIncomePage from './partners/page/income/PartnersIncomePage';
 
 const StyledMainWrapper = styled.div`
   margin: 0 auto;
-  padding: 0 150px;
+  padding: 0 50px;
 `;
 
 function App() {

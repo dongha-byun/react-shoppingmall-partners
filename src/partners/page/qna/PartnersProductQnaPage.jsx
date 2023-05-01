@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Form, Table } from "react-bootstrap";
+import { Col, Row, Form } from "react-bootstrap";
 import styled from "styled-components";
 import ProductQnaService from "../../js/productQna";
 import PartnersProductQnaList from "./PartnersProductQnaList";
