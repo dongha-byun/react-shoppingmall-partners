@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import PartnersOrderPage from './partners/page/order/PartnersOrderPage';
 import PartnersProductQnaPage from './partners/page/qna/PartnersProductQnaPage';
 import PartnersIncomePage from './partners/page/income/PartnersIncomePage';
+import PartnersProductQnaAnswerForm from './partners/page/qna/PartnersProductQnaAnswerForm';
 
 const StyledMainWrapper = styled.div`
   margin: 0 auto;
@@ -36,6 +37,7 @@ function App() {
             <Route path="orders" element={<PartnersOrderPage/>}></Route>
 
             <Route path="qnas" element={<PartnersProductQnaPage/>}></Route>
+            <Route path="qnas/answer" element={<PartnersProductQnaAnswerForm/>}></Route>
           </Route>
         </Routes>
       </StyledMainWrapper>

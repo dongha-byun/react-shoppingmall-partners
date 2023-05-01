@@ -1,7 +1,8 @@
-import React from "react";
-import { Table } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Table } from "react-bootstrap";
 import styled from "styled-components";
 import { imgUrl } from "../../js/axios";
+import { useNavigate } from "react-router-dom";
 
 const StyledTh = styled.th`
     text-align: center;
@@ -13,6 +14,7 @@ const StyledTd = styled.td`
 `;
 
 export default function PartnersProductQnaList(props) {
+    const navigate = useNavigate();
     const { qnaList } = props;
 
     return (
@@ -23,7 +25,6 @@ export default function PartnersProductQnaList(props) {
                 <col width={150}></col>
                 <col width={150}></col>
                 <col width={200}></col>
-                <col width={150}></col>
             </colgroup>
             <thead>
                 <tr>
@@ -32,7 +33,6 @@ export default function PartnersProductQnaList(props) {
                     <StyledTh>상품이미지</StyledTh>
                     <StyledTh>상품명</StyledTh>
                     <StyledTh>문의내용</StyledTh>
-                    <StyledTh>답변여부</StyledTh>
                 </tr>
             </thead>
             <tbody>
@@ -45,8 +45,13 @@ export default function PartnersProductQnaList(props) {
                                 <img src={imgUrl + qna.imgFileName} width={100} alt="" />
                             </StyledTd>
                             <StyledTd>{qna.productName}</StyledTd>
-                            <StyledTd>{qna.content}</StyledTd>
-                            <StyledTd>{qna.answered ? "답변 완료" : "답변 미등록"}</StyledTd>
+                            <StyledTd>
+                                <Button size="sm" onClick={() => {
+                                    navigate("/partners/qnas/answer", {state: qna});
+                                }}>
+                                    문의내용 확인하기
+                                </Button>
+                            </StyledTd>
                         </tr>
                     );
                 })}

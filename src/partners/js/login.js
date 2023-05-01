@@ -1,10 +1,12 @@
 import { api } from "./axios";
+import { setStorageItem } from "./headers";
 
 export function partnersLoginApi(loginValue){
     api.post("/partners/login", loginValue)
     .then((response) => {
         if(response.data.accessToken){
-            localStorage.setItem("partner-token", response.data.accessToken);
+            setStorageItem("partner-token", response.data.accessToken);
+            setStorageItem("partner-name", response.data.name);
         }
         window.location.href = "/partners/products";
     })
