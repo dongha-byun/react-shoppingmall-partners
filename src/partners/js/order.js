@@ -1,4 +1,4 @@
-import ApiService, { api } from "./axios";
+import ApiService from "./axios";
 import { partnerHeaders } from "./headers";
 
 const OrderService = {

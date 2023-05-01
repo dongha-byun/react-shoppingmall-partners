@@ -1,13 +1,16 @@
 import React from "react";
 import { useState } from "react";
-import { Form, Table } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { aMonthTime } from "../../js/utils/DateFormat";
 import format from "date-fns/format";
 import styled from "styled-components";
 import OrderDateForm from "./OrderDateForm";
 import OrderStatusSelectForm from "./OrderStatusSelectForm";
 import OrderService from "../../js/order";
-import PartnersOrderLineItem from "./PartnersOrderLineItem";
+import PartnersOrderReadyList from "./ready/PartnersOrderReadyList";
+import PartnersOrderOutingList from "./outing/PartnersOrderOutingList";
+import PartnersOrderCancelList from "./cancel/PartnersOrderCancelList";
+import PartnersOrderDeliveryList from "./delivery/PartnersOrderDeliveryList";
 
 const PartnersOrderPageWrapper = styled.div`
     padding: 20px;
@@ -15,10 +18,6 @@ const PartnersOrderPageWrapper = styled.div`
 
 const PartnersOrderTableWrapper = styled.div`
     margin-top: 20px;
-`;
-
-const StyledTh = styled.th`
-    text-align: center;
 `;
 
 export default function PartnersOrderPage() {
@@ -57,29 +56,22 @@ export default function PartnersOrderPage() {
             </Form>
             
             <PartnersOrderTableWrapper>
-                <Table bordered responsive>
-                    <thead>
-                        <tr>
-                            <StyledTh>주문번호</StyledTh>
-                            <StyledTh>주문일자</StyledTh>
-                            <StyledTh>상품코드</StyledTh>
-                            <StyledTh>상품명</StyledTh>
-                            <StyledTh>수량</StyledTh>
-                            <StyledTh>구매자</StyledTh>
-                            <StyledTh>수령인</StyledTh>
-                            <StyledTh>배송지 주소</StyledTh>
-                            <StyledTh>배송 요청사항</StyledTh>
-                            <StyledTh></StyledTh>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {orderList.map((order) => {
-                            return (
-                                <PartnersOrderLineItem key={order.id} order={order} />
-                            );
-                        })}
-                    </tbody>
-                </Table>
+                {
+                    orderStatus == "READY" && 
+                    <PartnersOrderReadyList orderList={orderList} />
+                }
+                {
+                    orderStatus == "CANCEL" && 
+                    <PartnersOrderCancelList orderList={orderList} />
+                }
+                {
+                    orderStatus == "OUTING" &&
+                    <PartnersOrderOutingList orderList={orderList} />
+                }
+                {
+                    orderStatus == "DELIVERY" &&
+                    <PartnersOrderDeliveryList orderList={orderList} />
+                }
             </PartnersOrderTableWrapper>
         </PartnersOrderPageWrapper>
     );
