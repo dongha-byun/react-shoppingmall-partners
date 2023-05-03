@@ -46,11 +46,19 @@ export default function PartnersProductQnaList(props) {
                             </StyledTd>
                             <StyledTd>{qna.productName}</StyledTd>
                             <StyledTd>
-                                <Button size="sm" onClick={() => {
-                                    navigate("/partners/qnas/answer", {state: qna});
-                                }}>
-                                    문의내용 확인하기
-                                </Button>
+                                {
+                                    qna.answered && 
+                                    <Button variant="outline-primary" size="sm" onClick={() => {
+                                        navigate("/partners/qnas/answer/view", {state: qna});
+                                    }}>
+                                        답변내역 확인하기
+                                    </Button> || 
+                                    <Button size="sm" onClick={() => {
+                                        navigate("/partners/qnas/answer", {state: qna});
+                                    }}>
+                                        문의내용 확인하기
+                                    </Button>
+                                }
                             </StyledTd>
                         </tr>
                     );

@@ -16,6 +16,7 @@ import PartnersOrderPage from './partners/page/order/PartnersOrderPage';
 import PartnersProductQnaPage from './partners/page/qna/PartnersProductQnaPage';
 import PartnersIncomePage from './partners/page/income/PartnersIncomePage';
 import PartnersProductQnaAnswerForm from './partners/page/qna/PartnersProductQnaAnswerForm';
+import PartnersProductQnaAnswerView from './partners/page/qna/PartnersProductQnaAnswerView';
 
 const StyledMainWrapper = styled.div`
   margin: 0 auto;
@@ -38,6 +39,7 @@ function App() {
 
             <Route path="qnas" element={<PartnersProductQnaPage/>}></Route>
             <Route path="qnas/answer" element={<PartnersProductQnaAnswerForm/>}></Route>
+            <Route path="qnas/answer/view" element={<PartnersProductQnaAnswerView/>}></Route>
           </Route>
         </Routes>
       </StyledMainWrapper>

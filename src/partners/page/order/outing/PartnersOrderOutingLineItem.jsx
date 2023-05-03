@@ -1,23 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "react-bootstrap";
-import OrderService from "../../../js/order";
 
 const StyledTd = styled.td`
     text-align: center;
+    vertical-align: middle;
 `;
 
-export default function PartnersOrderLineItem(props) {
-    const { order } = props;
-
-    const outing = (orderId) => {
-        OrderService.outing(orderId).then(result => {
-            alert("송장번호가 발급되어 해당 주문은 출고중 처리가 됩니다. 상품을 준비해주세요.");
-        });
-    }
+export default function PartnersOrderOutingLineItem(props) {
+    const {order} = props;
 
     return (
-        <tr key={order.id}>
+        <tr>
             <StyledTd>{order.orderCode}</StyledTd>
             <StyledTd>{order.orderDate}</StyledTd>
             <StyledTd>{order.productCode}</StyledTd>
@@ -30,10 +24,13 @@ export default function PartnersOrderLineItem(props) {
                 {order.detailAddress}
             </td>
             <StyledTd>{order.requestMessage}</StyledTd>
+            <StyledTd>{order.invoiceNumber}</StyledTd>
             <StyledTd>
                 <Button size="sm" onClick={() => {
-                    outing(order.id);
-                }}>송장번호 발급</Button>
+                    alert(order.id);
+                }}>
+                    배송 시작 처리
+                </Button>
             </StyledTd>
         </tr>
     );
