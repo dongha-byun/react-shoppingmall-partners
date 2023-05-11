@@ -48,8 +48,8 @@ export default function PartnersProductQnaAnswerForm() {
                         <td>{state.writeDate}</td>
                     </tr>
                     <tr>
-                        <th>작성자</th>
-                        <td>{state.writerName}</td>
+                        <th>문의자</th>
+                        <td>{state.writerLoginId}</td>
                     </tr>
                     <tr>
                         <th>문의 내용</th>

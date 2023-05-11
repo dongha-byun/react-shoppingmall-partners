@@ -40,7 +40,7 @@ export default function PartnersProductQnaList(props) {
                     return (
                         <tr key={qna.id}>
                             <StyledTd>{qna.writeDate}</StyledTd>
-                            <StyledTd>{qna.writerName}</StyledTd>
+                            <StyledTd>{qna.writerLoginId}</StyledTd>
                             <StyledTd>
                                 <img src={imgUrl + qna.imgFileName} width={100} alt="" />
                             </StyledTd>

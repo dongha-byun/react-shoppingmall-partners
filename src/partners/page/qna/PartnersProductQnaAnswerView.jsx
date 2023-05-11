@@ -52,7 +52,7 @@ export default function PartnersProductQnaAnswerView() {
                     </tr>
                     <tr>
                         <th>작성자</th>
-                        <td>{state.writerName}</td>
+                        <td>{state.writerLoginId}</td>
                     </tr>
                     <tr>
                         <th>문의 내용</th>

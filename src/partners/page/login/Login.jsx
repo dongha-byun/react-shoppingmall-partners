@@ -42,6 +42,11 @@ export default function Login() {
                         type="password"
                         placeholder="비밀번호"
                         onChange={onChange}
+                        onKeyDown={(event) => {
+                            if(event.code === "Enter") {
+                                login();
+                            }
+                        }}
                     />
                 </Form.Group>
                 <div className="d-grid mb-3">
