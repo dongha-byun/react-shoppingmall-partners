@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { Button } from "react-bootstrap";
 import OrderService from "../../../js/order";
+import { numberCommaFormat } from "../../../js/utils/NumberUtils";
 
 const StyledTd = styled.td`
     text-align: center;
+    vertical-align: middle;
 `;
 
 export default function PartnersOrderLineItem(props) {
@@ -17,13 +19,15 @@ export default function PartnersOrderLineItem(props) {
     }
 
     return (
-        <tr key={order.id}>
+        <tr>
             <StyledTd>{order.orderCode}</StyledTd>
             <StyledTd>{order.orderDate}</StyledTd>
             <StyledTd>{order.productCode}</StyledTd>
             <StyledTd>{order.productName}</StyledTd>
             <StyledTd>{order.quantity}</StyledTd>
-            <StyledTd>{order.orderUserName}</StyledTd>
+            <StyledTd>{numberCommaFormat(order.totalPrice)}원</StyledTd>
+            <StyledTd>{order.userName}</StyledTd>
+            <StyledTd>010-1234-1234</StyledTd>
             <StyledTd>{order.receiverName}</StyledTd>
             <td>
                 {order.address} <br/>

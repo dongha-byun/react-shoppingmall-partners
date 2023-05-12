@@ -76,10 +76,14 @@ export default function PartnersOrderReadyList(props) {
                                 ({order.requestMessage})
                             </td>
                             <StyledTd>
-                                <Button variant="outline-primary"
-                                    size="sm" onClick={() => {
-                                    outing(order.id);
-                                }}>송장 출력</Button>
+                                {
+                                    order.invoiceNumber || 
+                                    <Button variant="outline-primary"
+                                        size="sm" onClick={() => {
+                                        outing(order.id);
+                                    }}>송장 출력</Button>
+                                }
+                                
                             </StyledTd>
                         </tr>
                     );
