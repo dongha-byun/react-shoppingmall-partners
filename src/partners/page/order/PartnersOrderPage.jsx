@@ -8,9 +8,8 @@ import OrderDateForm from "./OrderDateForm";
 import OrderStatusSelectForm from "./OrderStatusSelectForm";
 import OrderService from "../../js/order";
 import PartnersOrderReadyList from "./ready/PartnersOrderReadyList";
-import PartnersOrderOutingList from "./outing/PartnersOrderOutingList";
-import PartnersOrderCancelList from "./cancel/PartnersOrderCancelList";
 import PartnersOrderDeliveryList from "./delivery/PartnersOrderDeliveryList";
+import PartnersOrderDeliveryEndList from "./deliveryend/PartnersOrderDeliveryEndList";
 
 const PartnersOrderPageWrapper = styled.div`
     padding: 20px;
@@ -57,20 +56,19 @@ export default function PartnersOrderPage() {
             
             <PartnersOrderTableWrapper>
                 {
-                    orderStatus == "READY" && 
+                    orderStatus === "READY" && 
                     <PartnersOrderReadyList orderList={orderList} />
                 }
                 {
-                    orderStatus == "CANCEL" && 
-                    <PartnersOrderCancelList orderList={orderList} />
-                }
-                {
-                    orderStatus == "OUTING" &&
-                    <PartnersOrderOutingList orderList={orderList} />
-                }
-                {
-                    orderStatus == "DELIVERY" &&
+                    orderStatus === "DELIVERY" &&
                     <PartnersOrderDeliveryList orderList={orderList} />
+                }
+                {
+                    orderStatus === "DELIVERY_END" &&
+                    <PartnersOrderDeliveryEndList orderList={orderList} />
+                }
+                {
+                    orderStatus === "FINISH"
                 }
             </PartnersOrderTableWrapper>
         </PartnersOrderPageWrapper>
