@@ -2,8 +2,11 @@ import ApiService from "./axios";
 import { partnerHeaders } from "./headers";
 
 const OrderService = {
-    findPartnersOrder: async(status, startDate, endDate) => {
-        let url = "/partners/orders/" + status + "?startDate="+ startDate + "&endDate="+endDate;
+    findPartnersOrder: async(type, startDate, endDate) => {
+        let url = "/partners/orders" +
+                    "?type=" + type + 
+                    "&startDate=" + startDate + 
+                    "&endDate=" + endDate;
         return ApiService.get(url, partnerHeaders());
     },
     outing: async(orderId) => {

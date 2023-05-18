@@ -12,10 +12,10 @@ const StyledTd = styled.td`
     vertical-align: middle;
 `;
 
-export default function PartnersOrderDeliveryList(props) {
-    const { orderList } = props;
+export default function PartnersOrderEndList(props) {
+    const {orderList} = props;
     return (
-        <Table bordered style={{
+        <Table bordered responsive style={{
             minWidth: "1300px"
         }}>
             <thead>
@@ -35,6 +35,12 @@ export default function PartnersOrderDeliveryList(props) {
                     <StyledTh>
                         배송지 주소<br/>
                         (요청사항)
+                    </StyledTh>
+                    <StyledTh>
+                        배송완료일자
+                    </StyledTh>
+                    <StyledTh>
+                        배송장소
                     </StyledTh>
                 </tr>
             </thead>
@@ -65,13 +71,19 @@ export default function PartnersOrderDeliveryList(props) {
                                 {order.detailAddress} <br/>
                                 ({order.requestMessage})
                             </td>
+                            <StyledTd>
+                                {order.deliveryDate}
+                            </StyledTd>
+                            <StyledTd>
+                                {order.deliveryPlace}
+                            </StyledTd>
                         </tr>
                     );
                 })}
                 {
                     orderList.length == 0 && 
                     <tr>
-                        <StyledTd colSpan={9}>
+                        <StyledTd colSpan={10}>
                             주문 내역이 존재하지 않습니다.
                         </StyledTd>
                     </tr>

@@ -9,7 +9,8 @@ import OrderStatusSelectForm from "./OrderStatusSelectForm";
 import OrderService from "../../js/order";
 import PartnersOrderReadyList from "./ready/PartnersOrderReadyList";
 import PartnersOrderDeliveryList from "./delivery/PartnersOrderDeliveryList";
-import PartnersOrderDeliveryEndList from "./deliveryend/PartnersOrderDeliveryEndList";
+import PartnersOrderEndList from "./end/PartnersOrderEndList";
+import PartnersOrderCancelList from "./cancel/PartnersOrderCancelList";
 
 const PartnersOrderPageWrapper = styled.div`
     padding: 20px;
@@ -64,11 +65,12 @@ export default function PartnersOrderPage() {
                     <PartnersOrderDeliveryList orderList={orderList} />
                 }
                 {
-                    orderStatus === "DELIVERY_END" &&
-                    <PartnersOrderDeliveryEndList orderList={orderList} />
+                    orderStatus === "END" &&
+                    <PartnersOrderEndList orderList={orderList} />
                 }
                 {
-                    orderStatus === "FINISH"
+                    orderStatus === "STOP" && 
+                    <PartnersOrderCancelList orderList={orderList} />
                 }
             </PartnersOrderTableWrapper>
         </PartnersOrderPageWrapper>
