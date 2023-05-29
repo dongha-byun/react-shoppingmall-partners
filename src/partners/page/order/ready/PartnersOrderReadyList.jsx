@@ -64,11 +64,11 @@ export default function PartnersOrderReadyList(props) {
                             <StyledTd>{numberCommaFormat(order.totalPrice)}원</StyledTd>
                             <StyledTd>
                                 {order.userName}<br/>
-                                010-1234-1234
+                                {order.userTelNo}
                             </StyledTd>
                             <StyledTd>
                                 {order.receiverName}<br/>
-                                010-1234-1234
+                                {order.receiverPhoneNumber}
                             </StyledTd>
                             <td>
                                 {order.address} <br/>
