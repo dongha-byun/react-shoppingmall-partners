@@ -69,7 +69,7 @@ export default function PartnersOrderPage() {
                     <PartnersOrderEndList orderList={orderList} />
                 }
                 {
-                    orderStatus === "STOP" && 
+                    orderStatus === "CANCEL" && 
                     <PartnersOrderCancelList orderList={orderList} />
                 }
             </PartnersOrderTableWrapper>

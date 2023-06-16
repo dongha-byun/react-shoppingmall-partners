@@ -9,8 +9,8 @@ const OrderService = {
                     "&endDate=" + endDate;
         return ApiService.get(url, partnerHeaders());
     },
-    outing: async(orderId) => {
-        let url = "/orders/"+orderId+"/outing";
+    outing: async(orderId, orderItemId) => {
+        let url = "/orders/"+orderId+"/" + orderItemId + "/outing";
         return ApiService.put(url, '', partnerHeaders());
     }
 }

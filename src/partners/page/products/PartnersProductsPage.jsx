@@ -19,17 +19,17 @@ const StyledH4 = styled.h4`
     display: inline;
 `;
 
-function PartnersProductsPage(){
+function PartnersProductsPage(){ 
     const [categoryId, setCategoryId] = useState();
     const [subCategoryId, setSubCategoryId] = useState();
     const [categoryName, setCategoryName] = useState('');
     const [subCategoryName, setSubCategoryName] = useState('');
 
     const [products, setProducts] = useState([]);
-    const [limit, setLimit] = useState(10);
     const [offset, setOffset] = useState(0);
     const [items, setItems] = useState([]);
     const [active, setActive] = useState(1);
+    const limit = 10;
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -41,7 +41,7 @@ function PartnersProductsPage(){
 
                 let pageItems = [];
                 setItems(pageItems);
-                for(let number = 1; number <= result.totalCount / limit ; number++) {
+                for(let number = 1; number <= (result.totalCount-1) / limit + 1 ; number++) {
                     pageItems.push(
                         <Pagination.Item key={number} active={number === active} onClick={() => {
                             onSearch(number);
