@@ -42,6 +42,9 @@ export default function PartnersOrderEndList(props) {
                     <StyledTh>
                         배송장소
                     </StyledTh>
+                    <StyledTh>
+                        주문상태
+                    </StyledTh>
                 </tr>
             </thead>
             <tbody>
@@ -76,6 +79,9 @@ export default function PartnersOrderEndList(props) {
                             </StyledTd>
                             <StyledTd>
                                 {order.deliveryPlace}
+                            </StyledTd>
+                            <StyledTd>
+                                {order.orderStatusName}
                             </StyledTd>
                         </tr>
                     );

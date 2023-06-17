@@ -17,9 +17,11 @@ const StyledTd = styled.td`
 export default function PartnersOrderReadyList(props) {
     const {orderList} = props;
 
-    const outing = (orderId) => {
-        OrderService.outing(orderId).then(result => {
+    const outing = (orderId, orderItemId) => {
+        OrderService.outing(orderId, orderItemId).then(result => {
             alert("송장번호가 발급되어 해당 주문은 출고중 처리가 됩니다. 상품을 준비해주세요.");
+        }).catch(() => {
+            alert("송장번호 발급 중에 오류가 발생했습니다. 잠시 뒤에 다시 시도해주세요.");
         });
     }
 
@@ -46,12 +48,13 @@ export default function PartnersOrderReadyList(props) {
                         (요청사항)
                     </StyledTh>
                     <StyledTh>송장번호</StyledTh>
+                    <StyledTh>주문상태</StyledTh>
                 </tr>
             </thead>
             <tbody>
                 {orderList.map((order) => {
                     return (
-                        <tr key={order.id}>
+                        <tr key={order.orderItemId}>
                             <StyledTd>
                                 {order.orderDate}<br/>
                                 ({order.orderCode})
@@ -80,10 +83,12 @@ export default function PartnersOrderReadyList(props) {
                                     order.invoiceNumber || 
                                     <Button variant="outline-primary"
                                         size="sm" onClick={() => {
-                                        outing(order.id);
+                                        outing(order.orderId, order.orderItemId);
                                     }}>송장 출력</Button>
                                 }
-                                
+                            </StyledTd>
+                            <StyledTd>
+                                {order.orderStatusName}
                             </StyledTd>
                         </tr>
                     );
@@ -91,7 +96,7 @@ export default function PartnersOrderReadyList(props) {
                 {
                     orderList.length == 0 && 
                     <tr>
-                        <StyledTd colSpan={11}>
+                        <StyledTd colSpan={12}>
                             주문 내역이 존재하지 않습니다.
                         </StyledTd>
                     </tr>

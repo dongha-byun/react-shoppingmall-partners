@@ -37,7 +37,7 @@ export default function PartnersOrderCancelList(props) {
                         (요청사항)
                     </StyledTh>
                     <StyledTh>구분 및 일자</StyledTh>
-                    <StyledTh>현재상태</StyledTh>
+                    <StyledTh>주문상태</StyledTh>
                 </tr>
             </thead>
             <tbody>
@@ -70,7 +70,9 @@ export default function PartnersOrderCancelList(props) {
                             <StyledTd>
                                 {order.cancelDate}
                             </StyledTd>
-                            <StyledTd></StyledTd>
+                            <StyledTd>
+                                {order.orderStatusName}
+                            </StyledTd>
                         </tr>
                     );
                 })}
