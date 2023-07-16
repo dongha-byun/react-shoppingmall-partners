@@ -29,6 +29,7 @@ function PartnersManagePage(){
                 <Tab eventKey="incomes" title="매출 관리" />
                 <Tab eventKey="orders" title="주문/배송" />
                 <Tab eventKey="qnas" title="상품문의" />
+                <Tab eventKey="coupons" title="쿠폰 관리" />
             </Tabs>
             <Outlet />
         </StyledManagePageWrapper>

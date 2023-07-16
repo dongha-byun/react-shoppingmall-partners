@@ -9,7 +9,7 @@ const StyledAddPageWrapper = styled.div`
     padding: 20px;
 `;
 
-const StyledH3 = styled.h3`
+const StyledH4 = styled.h4`
     margin-bottom: 15px;
 `;
 
@@ -60,7 +60,7 @@ export default function PartnersProductsAddPage() {
 
     return (
         <StyledAddPageWrapper>
-            <StyledH3>상품 등록</StyledH3>
+            <StyledH4>상품 등록</StyledH4>
             <Form>
                 <CategorySelect 
                     categoryId={categoryId} subCategoryId={subCategoryId}
