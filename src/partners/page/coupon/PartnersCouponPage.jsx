@@ -31,7 +31,7 @@ export default function PartnersCouponPage() {
 
     useEffect(() => {
         CouponService.getCoupons().then((data) => {
-            
+            setCouponList(data);
         });
     }, []);
 
@@ -59,7 +59,6 @@ export default function PartnersCouponPage() {
                         <StyledTh>유효기간 시작</StyledTh>
                         <StyledTh>유효기간 끝</StyledTh>
                         <StyledTh>할인율</StyledTh>
-                        <StyledTh>발급 대상자</StyledTh>
                         <StyledTh>대상자 조회</StyledTh>
                     </tr>
                 </thead>
@@ -67,11 +66,10 @@ export default function PartnersCouponPage() {
                     {couponList.map((coupon) => {
                         return(
                             <tr key={coupon.id}>
-                                <StyledTd>특별 할인 쿠폰!</StyledTd>
-                                <StyledTd>2021-01-01</StyledTd>
-                                <StyledTd>2023-12-31</StyledTd>
-                                <StyledTd>5%</StyledTd>
-                                <StyledTd>단골 회원 이상</StyledTd>
+                                <StyledTd>{coupon.name}</StyledTd>
+                                <StyledTd>{coupon.fromDate}</StyledTd>
+                                <StyledTd>{coupon.toDate}</StyledTd>
+                                <StyledTd>{coupon.discountRate}%</StyledTd>
                                 <StyledTd>
                                     <Button variant="outline-secondary" size="sm"
                                         onClick={() => openTargetUserPop()}
@@ -82,7 +80,7 @@ export default function PartnersCouponPage() {
                     })}
                 </tbody>
             </Table>
-
+            
         </StyledCouponPageWrapper>
     );
 } 
