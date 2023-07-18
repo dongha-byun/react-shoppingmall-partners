@@ -20,6 +20,7 @@ import PartnersProductQnaAnswerView from './partners/page/qna/PartnersProductQna
 import { Col, Container, Row } from 'react-bootstrap';
 import PartnersCouponPage from './partners/page/coupon/PartnersCouponPage';
 import PartnersCouponAddPage from './partners/page/coupon/PartnersCouponAddPage';
+import CouponReceivedUserListPage from './partners/page/coupon/CouponReceivedUserListPage';
 
 const StyledMainWrapper = styled.div`
   margin: 0 auto;
@@ -48,6 +49,7 @@ function App() {
 
                   <Route path="coupons" element={<PartnersCouponPage />}></Route>
                   <Route path="coupons/add" element={<PartnersCouponAddPage />}></Route>
+                  <Route path="coupons/:couponId/users" element={<CouponReceivedUserListPage />}></Route>
                 </Route>
               </Routes>
             </StyledMainWrapper>

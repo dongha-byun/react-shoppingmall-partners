@@ -35,8 +35,8 @@ export default function PartnersCouponPage() {
         });
     }, []);
 
-    const openTargetUserPop = () => {
-        alert("대상자 조회 뿅");
+    const viewUserList = (couponId) => {
+        navigate("/partners/coupons/"+couponId+"/users");
     }
 
     return(
@@ -72,7 +72,7 @@ export default function PartnersCouponPage() {
                                 <StyledTd>{coupon.discountRate}%</StyledTd>
                                 <StyledTd>
                                     <Button variant="outline-secondary" size="sm"
-                                        onClick={() => openTargetUserPop()}
+                                        onClick={() => viewUserList(coupon.id)}
                                     >조회</Button>
                                 </StyledTd>
                             </tr>
@@ -80,7 +80,6 @@ export default function PartnersCouponPage() {
                     })}
                 </tbody>
             </Table>
-            
         </StyledCouponPageWrapper>
     );
 } 
