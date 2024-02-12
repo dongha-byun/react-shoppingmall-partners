@@ -2,7 +2,7 @@ import ApiService from "./axios";
 
 const CategoryService = {
     getCategories: async() => {
-        return ApiService.get("/categories");
+        return ApiService.get("/category-service/categories");
     }
 }
 
