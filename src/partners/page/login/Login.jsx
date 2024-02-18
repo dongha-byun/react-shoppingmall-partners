@@ -63,7 +63,7 @@ export default function Login() {
                     <Nav.Link href="/providers/find-pw">비밀번호찾기</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/partners/sign-up">판매 자격 신청</Nav.Link>
+                    <Nav.Link href="/register">판매 자격 신청</Nav.Link>
                 </Nav.Item>
             </Nav>
         </StyledLoginWrapper>

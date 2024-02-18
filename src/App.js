@@ -21,6 +21,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import PartnersCouponPage from './partners/page/coupon/PartnersCouponPage';
 import PartnersCouponAddPage from './partners/page/coupon/PartnersCouponAddPage';
 import CouponReceivedUserListPage from './partners/page/coupon/CouponReceivedUserListPage';
+import { Register } from './partners/page/login/Register';
 
 const StyledMainWrapper = styled.div`
   margin: 0 auto;
@@ -35,6 +36,7 @@ function App() {
             <StyledMainWrapper>
               <Routes>
                 <Route index path="/" element={<Login/>}></Route> 
+                <Route path="/register" element={<Register/>}></Route>
                 <Route path="/partners" element={<PartnersManagePage/>}>
                   <Route path="products" element={<PartnersProductsPage/>}></Route>
                   <Route path="products/add" element={<PartnersProductsAddPage/>}></Route>
