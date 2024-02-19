@@ -4,6 +4,7 @@ import styled from "styled-components";
 import CategorySelect from "./CategorySelect";
 import ProductService from "../../js/product";
 import { useNavigate } from "react-router-dom";
+import CustomEditor from "../component/editor/CustomEditor";
 
 const StyledAddPageWrapper = styled.div`
     padding: 20px;
@@ -13,17 +14,21 @@ const StyledH4 = styled.h4`
     margin-bottom: 15px;
 `;
 
+const StyledButtonWrapper = styled.div`
+    margin-top: 60px;
+`;
+
 export default function PartnersProductsAddPage() {
     const navigate = useNavigate();
     const [categoryId, setCategoryId] = useState();
     const [subCategoryId, setSubCategoryId] = useState();
     const [productAddForm, setProductAddForm] = useState({
         productName: "",
-        detail:"",
         price: 0,
-        count: 0,
+        stock: 0,
     });
     const [showImgFile, setShowImgFile] = useState();
+    const [editorValue, setEditorValue] = useState("");
 
     const onChange = (event) => {
         setProductAddForm({
@@ -39,9 +44,9 @@ export default function PartnersProductsAddPage() {
     const confirm = () =>{
         let product = {
             name: productAddForm.productName,
-            detail: productAddForm.detail,
             price: productAddForm.price,
-            count: productAddForm.count,
+            stock: productAddForm.stock,
+            detail: editorValue,
             categoryId: categoryId,
             subCategoryId: subCategoryId
         };
@@ -76,7 +81,7 @@ export default function PartnersProductsAddPage() {
                         <Form.Control type="number" onChange={onChange}/>
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="count">
+                    <Form.Group as={Col} controlId="stock">
                         <Form.Label>수량</Form.Label>
                         <Form.Control type="number" onChange={onChange}/>
                     </Form.Group>
@@ -85,13 +90,15 @@ export default function PartnersProductsAddPage() {
                     <Form.Label>대표 이미지</Form.Label>
                     <Form.Control type="file" name="showImgFile" onChange={onChangeFile}/>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="detail">
+                <Form.Group className="mb-3">
                     <Form.Label>상품 설명</Form.Label>
-                    <Form.Control as="textarea" rows={10} onChange={onChange}/>
+                    <CustomEditor editorValue={editorValue} onChangeEditorValue={setEditorValue} />
                 </Form.Group>
             </Form>
-            <Button size="lg" variant="outline-danger" className="w-50" onClick={cancel}>취소</Button>
-            <Button size="lg" className="w-50" onClick={confirm}>상품 등록</Button>
+            <StyledButtonWrapper>
+                <Button size="lg" variant="outline-danger" className="w-50" onClick={cancel}>취소</Button>
+                <Button size="lg" className="w-50" onClick={confirm}>상품 등록</Button>
+            </StyledButtonWrapper>
         </StyledAddPageWrapper>
     );
 }
