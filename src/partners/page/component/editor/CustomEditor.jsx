@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import ReactQuill, { Quill } from "react-quill";
+import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css'
+import FileService from "../../../js/file";
+import { webUrl } from "../../../js/axios";
 
-export default function CustomEditor(props) {
-    const quillRef = useRef(null);
-    const {editorValue, onChangeEditorValue} = props;
+const CustomEditor = ({editorValue, onChangeEditorValue}) => {
+    const quillRef = useRef();
     const formats = [
         "size", "color", "background", "bold", "italic",
         "underline", "strike", "blockquote", "list",
@@ -23,24 +24,38 @@ export default function CustomEditor(props) {
         ["link", "image"],
     ];
 
+    const uploadImage = async (file) => {
+        let result = await FileService.saveTempFile(file);
+        return webUrl + "/files/temp/" + result.storeFileName + "/" + result.realFileName;
+    }
+
     useEffect(() => {
         const handleImage = () => { 
-            console.log("123");
             const input = document.createElement("input");
             input.setAttribute("type", "file");
             input.setAttribute("accept", "image/*");
             input.click();
             input.onchange = async () => {
+                const editor = quillRef.current.getEditor();
                 const file = input.files[0];
-                console.log(file);
+                const range = editor.getSelection(true);
+                try {
+                    const url = await uploadImage(file); 
+                    console.log(url);
+                    
+                    // 받아온 url을 이미지 태그에 삽입
+                    editor.insertEmbed(range.index, "image", url);
+                    
+                    // 사용자 편의를 위해 커서 이미지 오른쪽으로 이동
+                    editor.setSelection(range.index + 1);
+                } catch (e) {
+                    editor.deleteText(range.index, 1);
+                }
 
-                const range = getEditor().getSelection(true);
-                console.log(range);
             }
         }
 
         if (quillRef.current) {
-            const { getEditor } = quillRef.current;
             const toolbar = quillRef.current.getEditor().getModule("toolbar");
             toolbar.addHandler("image", handleImage);
           }
@@ -61,3 +76,5 @@ export default function CustomEditor(props) {
         />
     );
 }
+
+export default CustomEditor;
