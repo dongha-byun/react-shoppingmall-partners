@@ -26,7 +26,7 @@ const CustomEditor = ({editorValue, onChangeEditorValue}) => {
 
     const uploadImage = async (file) => {
         let result = await FileService.saveTempFile(file);
-        return webUrl + "/files/temp/" + result.storeFileName + "/" + result.realFileName;
+        return webUrl + result.tempContentImageURI;
     }
 
     useEffect(() => {
